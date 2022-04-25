@@ -4,21 +4,21 @@
 
 #include <cstdio>
 #include <cstring>
-#include <cstdio>
-#include <cstdlib>
 #include <iostream>
-#include <sys/stat.h>
 
 
 #include <openssl/engine.h>
-#include <openssl/ssl.h>
 #include <openssl/evp.h>
 #include <openssl/crypto.h>
 #include <openssl/pem.h>
 #include <openssl/conf.h>
 #include <openssl/x509v3.h>
 
-#include "gencert.h"
+int mkcert(X509 **x509p, EVP_PKEY **pkeyp, EVP_PKEY **rootkey, int bits);
+int add_ext(X509 *cert, int nid, char *value);
+int make_root();
+int make_crl(X509_CRL **crl, EVP_PKEY **pkeyp, X509 **x509p);
+
 
 int main(int argc, char **argv) {
     BIO *bio_err;
